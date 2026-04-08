@@ -3,15 +3,18 @@
 
 #include <cstddef>
 
-namespace my_std {
+namespace stl {
 	template<class T, std::size_t N>
 	struct array {
+						//------Member Types---------
 		T arr[N];
 		
 		using reference = T&;
 		using const_reference = const T&;
 		using iterator = T*;
 		using const_iterator = const T*;
+		using reverse_iterator = my_std::reverse_iterator<iterator>;
+		using const_reverse_iterator = my_std::reverse_iterator<const_iterator>;
 
 						//--------Element Access--------
 
@@ -43,8 +46,31 @@ namespace my_std {
 		constexpr const_iterator begin() const noexcept { return arr; }
 		constexpr const_iterator cbegin() const noexcept { return arr; }
 
+		constexpr iterator end() noexcept { return arr + N; }
+		constexpr const_iterator end() const noexcept { return arr + N; }
+		constexpr const_iterator cend() const noexcept { return arr + N; }
+
+		constexpr reverse_iterator rbegin() noexcept { return reverse
+		constexpr const_reverse_iterator rbegin() const noexcept {
+		constexpr const_reverse_iterator crbegin() const noexcept {
+
+						//----------Capacity------------
 		constexpr bool empty() { return N == 0; }
 		constexpr std::size_t size() const noexcept { return N; }
+		constexpr std::size_t max_size() const noexcept { return N; }
+
+						//----------Operations----------
+		void fill( const T& value) {
+			for ( std::size_t x = 0; x < N; x++) {
+				arr[x] = value;
+			}
+		}
+		constexpr void swap( array& other) noexcept {
+			
+						//----------Non-Member Funcs----
+
+						//----------Helper-Classes------
+
 	};
 
 #endif
