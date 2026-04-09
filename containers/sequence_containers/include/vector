@@ -4,6 +4,12 @@
 #include <cstddef>
 
 namespace stl {
+	template<class T, class Allocator = std::allocator<T>> class vector;
+
+	namespace my_pmr {
+		template<class T>
+		using vector = stl::vector<T, stl::my_pmr::polymorphic_allocator<T>>;	
+	}
 	
 }
 
