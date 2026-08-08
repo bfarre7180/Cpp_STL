@@ -3,7 +3,7 @@
 
 #include <cstddef>
 
-namespace stl {
+namespace my_lib {
 	template<class T, std::size_t N>
 	struct array {
 						//------Member Types---------
@@ -50,9 +50,9 @@ namespace stl {
 		constexpr const_iterator end() const noexcept { return arr + N; }
 		constexpr const_iterator cend() const noexcept { return arr + N; }
 
-		constexpr reverse_iterator rbegin() noexcept { return reverse
-		constexpr const_reverse_iterator rbegin() const noexcept {
-		constexpr const_reverse_iterator crbegin() const noexcept {
+		constexpr reverse_iterator rbegin() noexcept { return reverse }
+		constexpr const_reverse_iterator rbegin() const noexcept { }
+		constexpr const_reverse_iterator crbegin() const noexcept { }
 
 						//----------Capacity------------
 		constexpr bool empty() { return N == 0; }
@@ -65,11 +65,12 @@ namespace stl {
 				arr[x] = value;
 			}
 		}
-		constexpr void swap( array& other) noexcept {
+		constexpr void swap( array& other) noexcept {}
 			
 						//----------Non-Member Funcs----
 
 						//----------Helper-Classes------
+	}
 
 	};
 

@@ -3,14 +3,17 @@
 
 #include <cstddef>
 
-namespace stl {
-	template<class T, class Allocator = std::allocator<T>> class vector;
-
-	namespace my_pmr {
-		template<class T>
-		using vector = stl::vector<T, stl::my_pmr::polymorphic_allocator<T>>;	
-	}
-	
+namespace my_lib {
+	template<class T, std::size_t N>
+    class vector {
+        public:
+            vector(std::size_t s): elem{ new T[s] }, sz{s} {}
+            double& operator[](std::size_t i) { return elem[i]; }
+            std::size_t size() { return sz; }
+        private:
+            T* elem;
+            std::size_t sz;
+    }
 }
 
 #endif
