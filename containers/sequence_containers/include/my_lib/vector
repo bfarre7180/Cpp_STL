@@ -3,6 +3,8 @@
 
 #include <cstddef>
 #include <initializer_list>
+#include <stdexcept>
+#include <iostream>
 
 namespace my_lib {
 	template<class T>
@@ -10,8 +12,12 @@ namespace my_lib {
 
         public:
 
-            vector(std::size_t s): elem{ new T[s] }, sz{s} {}
-            vector(std::initializer_list<T> list): elem{ new T[list.size()] }, sz{ list.size() } {
+            vector ( std::size_t s ): elem{ new T[s] }, sz{s} {
+                for (std::size_t i = 0; i < s; i++) {
+                    elem[i] = 0;
+                }
+            }
+            vector ( std::initializer_list<T> list ): elem{ new T[list.size()] }, sz{ list.size() } {
                 std::size_t i = 0;
                 for (const T& val: list) {
                     elem[i] = val;
@@ -19,9 +25,40 @@ namespace my_lib {
                 }
             }
 
+            ~vector () { delete[] elem; }
 
-            T& operator[](std::size_t i) { return elem[i]; }
-            std::size_t size() const { return sz; }
+
+            constexpr T& operator[] ( const std::size_t i ) {
+                if (i >= sz)
+                    throw out_of_range{"Vector::operator[]"};
+                return elem[i];
+            }
+
+            constexpr bool operator== ( const vector<T>& v1, const vector<T>& v2) {
+                std::size_t n = v1.size();
+                if ( n != v2.size() ) {
+                    return false;
+                }
+
+                for ( std::size_t i = 0; i < n; i++ ) {
+                    if ( v1[i] != v2[i] ) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            friend std::ostream& 
+
+            constexpr void push_back ( const T& val ) {
+
+            }
+            constexpr void push_back ( T&& val ) {
+
+            }
+
+            std::size_t size () const { return sz; }
 
         private:
             T* elem;

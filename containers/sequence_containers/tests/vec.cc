@@ -1,5 +1,6 @@
 #include <my_lib/vector>
 #include <gtest/gtest.h>
+#include <string>
 
 TEST(VectorTest, Constructor_Sets_Size) {
     my_lib::vector<int> vec1(5);
@@ -22,4 +23,19 @@ TEST(VectorTest, Element_Access) {
     EXPECT_EQ(vec1[1], 2);
     EXPECT_EQ(vec2[0], 99.9);
     EXPECT_EQ(vec2[1], 2.0);
+}
+
+TEST(VectorTest, Push_Back) {
+    my_lib::vector<int> vec;
+    vec.push_back(10);
+    vec.push_back(20);
+    vec.push_back(30);
+
+    EXPECT_EQ( vec, my_lib::vector<int>{ 10, 20, 30 } );
+
+    my_lib::vector<int> vec1(10);
+    my_lib::vector<std::string> vec2{ "str1", "str2", "str3", "str4" };
+
+    EXPECT_EQ( vec1, my_lib::vector<int>{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } );
+    EXPECT_EQ( vec2, my_lib::vector<std::string>{ "str1", "str2", "str3", "str4" } );
 }

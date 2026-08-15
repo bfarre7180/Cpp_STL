@@ -6,6 +6,10 @@ target_include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+# =========================
+# GoogleTest
+# =========================
+
 add_executable(
     sequence_tests
     tests/vec.cc
@@ -27,3 +31,19 @@ target_link_libraries(
 include(GoogleTest)
 
 gtest_discover_tests(sequence_tests)
+
+# =========================
+# Google Benchmark
+# =========================
+
+add_executable(
+    sequence_benchmarks
+    benchmarks/vec.cc
+)
+
+target_link_libraries(
+    sequence_benchmarks
+    PRIVATE
+        high_performance_lib
+        benchmark::benchmark
+)

@@ -10,16 +10,29 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+
+
 enable_testing()
 
 include(FetchContent)
 
+#Google Test
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
 )
 
 FetchContent_MakeAvailable(googletest)
+
+#Google Benchmark
+FetchContent_Declare(
+    googlebenchmark
+    URL https://github.com/google/benchmark/archive/refs/tags/v1.9.4.zip
+)
+
+FetchContent_MakeAvailable(googlebenchmark)
+
+
 
 add_subdirectory(containers)
         #TODO
