@@ -30,6 +30,7 @@ FetchContent_Declare(
     URL https://github.com/google/benchmark/archive/refs/tags/v1.9.4.zip
 )
 
+set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "Disable Google Benchmark tests")
 FetchContent_MakeAvailable(googlebenchmark)
 
 
